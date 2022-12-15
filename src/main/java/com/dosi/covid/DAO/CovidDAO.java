@@ -19,19 +19,20 @@ import com.dosi.covid.Model.CovidState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class CovidDAO {
     private static String path = "src/main/resources/covid-data.csv";
 
-    public void saveCsvFile() throws IOException {
+
+    public static void saveCsvFile() throws IOException {
         File file = new File(path);
         InputStream in = new URL("https://coronavirus.politologue.com/data/coronavirus/coronacsv.aspx?format=csv&t=pays").openStream();
         Files.copy(in, Paths.get(file.getPath()), StandardCopyOption.REPLACE_EXISTING);
     }
 
-    public List<CovidState> loadCovidStateList() throws IOException {
-        saveCsvFile();
+    public List<CovidState> loadCovidStateList() {
         boolean headerFlag = true;
         List<CovidState> covidStateList = new ArrayList<CovidState>();
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {

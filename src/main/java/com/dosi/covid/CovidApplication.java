@@ -17,14 +17,14 @@ import java.util.List;
 @SpringBootApplication
 @EnableSwagger2
 public class CovidApplication {
-
     public static void main(String[] args) throws IOException {
         SpringApplication.run(CovidApplication.class, args);
-        CovidDAO dao = new CovidDAO();
+        CovidDAO.saveCsvFile();
+/*        CovidDAO dao = new CovidDAO();
         List<CovidState> covidStateList = dao.loadCovidStateList();
         for (CovidState covidState : covidStateList) {
             System.out.println(covidState.toString());
-        }
+        }*/
     }
 
 }
