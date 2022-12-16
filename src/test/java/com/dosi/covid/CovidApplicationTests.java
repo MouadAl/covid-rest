@@ -60,7 +60,7 @@ class CovidApplicationTests {
 	}
 	@Test
 	public void oneCountryData() throws ParseException {
-		List<CovidState> covidCountryData =covidService.oneCountryData("France");
+		List<CovidState> covidCountryData =covidService.oneContryData("France");
 		CovidState otherCounrtyData = new CovidState(new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH).parse("Tue Dec 13 00:00:00 CET 2022"),"Albanie",333567,3594,0,(float)1.08,(float)0.0,(float)98.92);
 		assertThat(covidCountryData)
 				.isNotNull()
@@ -69,17 +69,23 @@ class CovidApplicationTests {
 	}
 	@Test
 	public void getCountryDataWithDate() throws ParseException {
-		CovidState  covidCountryDataWithDate =covidService.oneCountryDataWithDate("France",new SimpleDateFormat("yyyy-MM-dd").parse("2022-12-13") );
-		CovidState CounrtyDataWithDate = new CovidState(new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH).parse("Tue Dec 13 00:00:00 CET 2022"),"Albanie",333567,3594,0,(float)1.05,(float)0.0,(float)98.92);
+		CovidState  covidCountryDataWithDate =covidService.oneCountryDataWithDate("Canada",new SimpleDateFormat("yyyy-MM-dd").parse("2022-12-14") );
+		CovidState CounrtyDataWithDateTest1 = new CovidState(new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH).parse("Tue Dec 14 00:00:00 CET 2022"),"France",37666819,156555,0,(float)0.42,(float)0.00,(float)99.58);
+		CovidState CounrtyDataWithDateTest2 = new CovidState(new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH).parse("Tue Dec 14 00:00:00 CET 2022"),"Canada",4472056,48657,0,(float)1.09,(float)0.0,(float)98.91);
+// Test 1 2022-12-14;France;37666819;156555;0;0.42;0.00;99.58
+// Test 2 2022-12-14;Canada;4472056;48657;0;1.09;0.00;98.91
+
+
+
 		assertThat(covidCountryDataWithDate)
 				.isNotNull()
-				.isEqualTo(CounrtyDataWithDate);
+				.isEqualTo(CounrtyDataWithDateTest2);
 
 	}
 	@Test
 	public void getTodayCountryData() throws ParseException {
 		CovidState todayCountryData = covidService.todayCountryData("France");
-			CovidState todayCountryDataTest = new CovidState(new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH).parse("Tue Dec 13 00:00:00 CET 2022"),"Albanie",333567,3594,0,(float)1.05,(float)0.0,(float)98.92);
+			CovidState todayCountryDataTest = new CovidState(new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH).parse("Tue Dec 13 00:00:00 CET 2022"),"France",333567,3594,0,(float)1.05,(float)0.0,(float)98.92);
 
 		assertThat(todayCountryData)
 				.isNotNull()
